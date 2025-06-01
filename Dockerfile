@@ -21,4 +21,5 @@ RUN npm prune --production
 # Install serve globally to serve the built app
 RUN npm install -g serve
 
-CMD ["serve", "-s", "dist", "-l", "8080"]
+# Remove the CMD line since Railway will use startCommand from railway.json
+# CMD ["serve", "-s", "dist", "-l", "8080"]
