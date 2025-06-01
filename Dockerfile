@@ -21,4 +21,8 @@ RUN npm prune --production
 # Install serve globally to serve the built app
 RUN npm install -g serve
 
-CMD ["serve", "-s", "dist", "-l", "8080"]
+# Expose the port
+EXPOSE $PORT
+
+# Use shell form to allow environment variable expansion
+CMD serve -s dist -p $PORT
