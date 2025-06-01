@@ -1,3 +1,4 @@
+# Use official Node image
 FROM node:18-alpine
 
 # Set working directory
@@ -6,20 +7,20 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install all dependencies (including devDependencies for build)
+# Install dependencies
 RUN npm install
 
-# Copy rest of the code
+# Copy app source
 COPY . .
 
-# Build the application using Vite
+# Build the React app
 RUN npm run build
 
-# Optional: Remove devDependencies to reduce image size
-RUN npm prune --production
-
-# Install serve globally to serve the built app
+# Install serve globally to serve the static site
 RUN npm install -g serve
 
-# Remove the CMD line since Railway will use startCommand from railway.json
-# CMD ["serve", "-s", "dist", "-l", "8080"]
+# Optional: Prune devDependencies if any
+RUN npm prune --production
+
+# Let Railway handle PORT env injection; no need to EXPOSE or set ENV
+# Start command is handled by railway.json
