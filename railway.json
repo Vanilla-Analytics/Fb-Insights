@@ -3,8 +3,7 @@
   "build": {
     "builder": "DOCKERFILE"
   },
-  "deploy": {    
-    "startCommand": "serve -s dist -l $PORT",
+  "deploy": {
     "healthcheckPath": "/",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
