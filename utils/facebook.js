@@ -16,7 +16,8 @@ class FacebookSDK {
     }
 
     this.initPromise = new Promise((resolve, reject) => {
-      const appId = import.meta.env.VITE_FACEBOOK_APP_ID;
+      //const appId = import.meta.env.VITE_FACEBOOK_APP_ID;
+      const appId = import.meta.env.VITE_FACEBOOK_APP_ID || '721154670366538';
       
       if (!appId) {
         reject(new Error('VITE_FACEBOOK_APP_ID is not set in environment variables'));
