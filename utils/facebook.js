@@ -110,7 +110,8 @@ class FacebookSDK {
             reject(new Error('Facebook login was cancelled or failed'));
           }
         }, {
-          scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
+          //scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
+          scope: 'public_profile,email'
         });
       });
       
