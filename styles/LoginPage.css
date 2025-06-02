@@ -1,0 +1,49 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.facebook-button {
+  background-color: #1877f2; /* Facebook blue */
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 220px;
+}
+
+.facebook-button:hover {
+  background-color: #4d94ff; /* lighter blue on hover */
+}
+
+.facebook-button.disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.error-box {
+  background-color: #ffe6e6;
+  color: #a00;
+  border: 1px solid #f5c2c2;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 400px;
+}

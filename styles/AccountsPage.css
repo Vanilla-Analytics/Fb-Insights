@@ -1,0 +1,112 @@
+.accounts-container {
+  padding: 40px;
+  background: #f9fafb;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.accounts-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.accounts-header p {
+  font-size: 14px;
+  color: #555;
+}
+
+.logout-button {
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #444;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.no-accounts {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  color: #555;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.account-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.account-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.account-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.account-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.account-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.account-info p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 13px;
+}
+
+.account-info small {
+  font-family: monospace;
+  font-size: 11px;
+  color: #aaa;
+}
+
+.select-button {
+  width: 100%;
+  padding: 10px;
+  background: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.select-button:hover {
+  background: #4d94ff;
+}
+
+.info-box {
+  margin-top: 40px;
+  background: #e6f0ff;
+  padding: 20px;
+  border-radius: 8px;
+  color: #333;
+}
