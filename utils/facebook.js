@@ -111,7 +111,7 @@ class FacebookSDK {
           }
         }, {
           //scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
-          scope: 'public_profile,email'
+          scope: 'public_profile'
         });
       });
       
