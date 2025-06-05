@@ -88,26 +88,41 @@ const DashboardPage = () => {
   const handleSwitchAccount = () => navigate('/accounts');
 
   const fetchAudit = async () => {
+     
     try {
       setLoadingAudit(true);
+
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/audit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          
           access_token: selectedAccount.access_token,
           page_id: selectedAccount.id,
         }),
       });
 
-      const data = await res.json();
-      alert(data.report); // TODO: Replace with modal or styled output
+      const text = await res.text(); // ✅ get raw response
+      console.log("🔍 Raw response:", text); // ⬅️ will help debug
+
+      try {
+        const data = JSON.parse(text);
+        if (data.report) alert(data.report);
+        else if (data.error) alert("Error: " + data.error);
+        else alert("No audit report returned.");
+      } catch (jsonErr) {
+        console.error("❌ JSON parse failed:", jsonErr);
+        alert("Backend did not return valid JSON.");
+      }
     } catch (err) {
-      console.error("Audit error:", err);
-      alert("Failed to generate audit. Check console for details.");
+      console.error("❌ Audit error:", err);
+      alert("Failed to connect to backend.");
     } finally {
+
       setLoadingAudit(false);
     }
   };
+
 
   if (!user || !selectedAccount) return null;
 
