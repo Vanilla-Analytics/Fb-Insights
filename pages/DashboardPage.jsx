@@ -91,7 +91,8 @@ const DashboardPage = () => {
      
     try {
       setLoadingAudit(true);
-      const url = `${import.meta.env.VITE_BACKEND_URL}/api/audit`;
+      //const url = `${import.meta.env.VITE_BACKEND_URL}/api/audit`;
+      const url = "https://fb-insights-backend-production.up.railway.app/api/audit";
       console.log("🔗 Calling backend at:", url);  // 🔍 THIS WILL TELL YOU IF URL IS WRONG
 
       const res = await fetch(url, {
