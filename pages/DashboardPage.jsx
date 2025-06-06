@@ -91,12 +91,14 @@ const DashboardPage = () => {
      
     try {
       setLoadingAudit(true);
+      const url = `${import.meta.env.VITE_BACKEND_URL}/api/audit`;
+      console.log("🔗 Calling backend at:", url);  // 🔍 THIS WILL TELL YOU IF URL IS WRONG
 
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/audit`, {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          
+
           access_token: selectedAccount.access_token,
           page_id: selectedAccount.id,
         }),
