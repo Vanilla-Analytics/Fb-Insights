@@ -39,7 +39,7 @@ class FacebookSDK {
             appId: appId,
             cookie: true,
             xfbml: true,
-            version: import.meta.env.VITE_API_VERSION || 'v18.0'
+            version: import.meta.env.VITE_API_VERSION || 'v23.0'
           });
 
           // Wait for FB to be ready
