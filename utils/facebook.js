@@ -39,7 +39,7 @@ class FacebookSDK {
             appId: appId,
             cookie: true,
             xfbml: true,
-            version: import.meta.env.VITE_API_VERSION || 'v23.0'
+            version: import.meta.env.VITE_API_VERSION || 'v18.0'
           });
 
           // Wait for FB to be ready
@@ -110,7 +110,8 @@ class FacebookSDK {
             reject(new Error('Facebook login was cancelled or failed'));
           }
         }, {
-          scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
+          //scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
+          scope: 'read_insights, pages_read_engagement'
           //scope: 'public_profile'
         });
       });
