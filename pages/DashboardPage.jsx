@@ -193,7 +193,7 @@ const DashboardPage = () => {
 
         <div className="audit-section">
           <h3>Generate Audit Report</h3>
-          <p>This will analyze Facebook Insights for the past 2 months using DeepSeek AI.</p>
+          <p></p>
           <button onClick={fetchAudit} disabled={loadingAudit}>
             {loadingAudit ? 'Generating Audit...' : 'Generate Facebook Audit'}
           </button>
