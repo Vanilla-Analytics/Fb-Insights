@@ -87,41 +87,76 @@ const DashboardPage = () => {
 
   const handleSwitchAccount = () => navigate('/accounts');
 
-  const fetchAudit = async () => {
+  // const fetchAudit = async () => {
      
+  //   try {
+  //     setLoadingAudit(true);
+  //     //const url = `${import.meta.env.VITE_BACKEND_URL}/api/audit`;
+  //     const url = "https://fb-insights-backend-production.up.railway.app/api/audit";
+  //     console.log("🔗 Calling backend at:", url);  // 🔍 THIS WILL TELL YOU IF URL IS WRONG
+
+  //     const res = await fetch(url, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+
+  //         access_token: selectedAccount.access_token,
+  //         page_id: selectedAccount.id,
+  //       }),
+  //     });
+
+  //     const text = await res.text(); // ✅ get raw response
+  //     console.log("🔍 Raw response:", text); // ⬅️ will help debug
+
+  //     try {
+  //       const data = JSON.parse(text);
+  //       if (data.report) alert(data.report);
+  //       else if (data.error) alert("Error: " + data.error);
+  //       else alert("No audit report returned.");
+  //     } catch (jsonErr) {
+  //       console.error("❌ JSON parse failed:", jsonErr);
+  //       alert("Backend did not return valid JSON.");
+  //     }
+  //   } catch (err) {
+  //     console.error("❌ Audit error:", err);
+  //     alert("Failed to connect to backend.");
+  //   } finally {
+
+  //     setLoadingAudit(false);
+  //   }
+  // };
+  const fetchAudit = async () => {
+
     try {
       setLoadingAudit(true);
-      //const url = `${import.meta.env.VITE_BACKEND_URL}/api/audit`;
       const url = "https://fb-insights-backend-production.up.railway.app/api/audit";
-      console.log("🔗 Calling backend at:", url);  // 🔍 THIS WILL TELL YOU IF URL IS WRONG
+      console.log("🔗 Calling backend at:", url);
 
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-
           access_token: selectedAccount.access_token,
           page_id: selectedAccount.id,
         }),
       });
 
-      const text = await res.text(); // ✅ get raw response
-      console.log("🔍 Raw response:", text); // ⬅️ will help debug
+      if (!res.ok) throw new Error("Failed to generate PDF");
 
-      try {
-        const data = JSON.parse(text);
-        if (data.report) alert(data.report);
-        else if (data.error) alert("Error: " + data.error);
-        else alert("No audit report returned.");
-      } catch (jsonErr) {
-        console.error("❌ JSON parse failed:", jsonErr);
-        alert("Backend did not return valid JSON.");
-      }
+      const blob = await res.blob();
+      const urlBlob = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = urlBlob;
+      a.download = "facebook_audit_report.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(urlBlob);
     } catch (err) {
       console.error("❌ Audit error:", err);
-      alert("Failed to connect to backend.");
+      alert("Something went wrong while generating the audit.");
     } finally {
-
       setLoadingAudit(false);
     }
   };
