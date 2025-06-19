@@ -156,6 +156,25 @@ class FacebookSDK {
     });
   }
 
+  // New method to get ad accounts using user token
+  async getAdAccounts(userAccessToken) {
+    const FB = await this.init();
+    
+    return new Promise((resolve, reject) => {
+      FB.api('/me/adaccounts', 'GET', {
+        access_token: userAccessToken,
+        fields: 'id,name,account_id,account_status'
+      }, (response) => {
+        console.log('Ad accounts response:', response);
+        if (response.error) {
+          reject(new Error(response.error.message));
+        } else {
+          resolve(response.data || []);
+        }
+      });
+    });
+  }
+
   async logout() {
     const FB = await this.init();
     

@@ -136,7 +136,8 @@ const DashboardPage = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_token: user.accessToken,
+          user_access_token: user.accessToken,
+          page_access_token: selectedAccount.access_token,
           page_id: selectedAccount.id,
         }),
       });
@@ -148,11 +149,13 @@ const DashboardPage = () => {
 
       const a = document.createElement("a");
       a.href = urlBlob;
-      a.download = "facebook_audit_report.pdf";
+      //a.download = "facebook_audit_report.pdf";
+      a.download = `facebook_audit_report_${selectedAccount.name.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();
       window.URL.revokeObjectURL(urlBlob);
+      console.log('Audit report downloaded successfully!')
     } catch (err) {
       console.error("❌ Audit error:", err);
       alert("Something went wrong while generating the audit.");
