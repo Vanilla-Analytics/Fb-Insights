@@ -113,7 +113,7 @@ class FacebookSDK {
           //scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
           //scope: 'read_insights, pages_read_engagement'
           //scope:'ads_read,read_insights,pages_read_engagement'
-          scope: 'ads_read'
+          scope: 'ads_read,ads_management,business_management'
         });
       });
       
