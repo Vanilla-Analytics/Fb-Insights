@@ -104,7 +104,11 @@ class FacebookSDK {
           
           if (response.authResponse) {
             console.log('Login successful');
-            resolve(response);
+            //resolve(response);
+            resolve({
+                accessToken: response.authResponse.accessToken,
+                userID: response.authResponse.userID
+            }); // ✅ Now you're explicitly returning what your app needs
           } else {
             console.log('Login cancelled or failed');
             reject(new Error('Facebook login was cancelled or failed'));
@@ -113,7 +117,7 @@ class FacebookSDK {
           //scope: 'pages_show_list,pages_read_engagement,read_insights,business_management'
           //scope: 'read_insights, pages_read_engagement'
           //scope:'ads_read,read_insights,pages_read_engagement'
-          scope: 'ads_read,ads_management,business_management'
+          scope: 'ads_read,ads_management,business_management,pages_show_list'
         });
       });
       

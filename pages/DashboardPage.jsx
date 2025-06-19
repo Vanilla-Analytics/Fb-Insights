@@ -136,7 +136,7 @@ const DashboardPage = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_token: selectedAccount.access_token,
+          access_token: user.accessToken,
           page_id: selectedAccount.id,
         }),
       });

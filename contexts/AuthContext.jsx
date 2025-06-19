@@ -51,11 +51,12 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       
       const response = await facebookSDK.login();
+      setUser({ accessToken: response.accessToken, userID: response.userID });
       
-      setUser({
-        id: response.authResponse.userID,
-        accessToken: response.authResponse.accessToken
-      });
+      // setUser({
+      //   id: response.authResponse.userID,
+      //   accessToken: response.authResponse.accessToken
+      // });
       
       // Load user accounts after successful login
       await loadUserAccounts(response.authResponse.accessToken);
